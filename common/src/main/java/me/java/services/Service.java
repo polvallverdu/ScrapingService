@@ -1,4 +1,4 @@
-package me.java.playwrightservice.services;
+package me.java.services;
 
 import java.util.ArrayList;
 import java.util.List;

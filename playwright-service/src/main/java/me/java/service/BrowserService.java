@@ -1,21 +1,23 @@
-package me.java.playwrightservice.services;
+package me.java.service;
 
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
-import me.java.playwrightservice.utils.Queues;
+import me.java.queue.RabbitMQClient;
+import me.java.services.Service;
+import me.java.utils.Queues;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.nio.file.Paths;
 
 public class BrowserService extends Service {
 
     private final boolean headless = true;
 
-    private void consume() {
+    private void worker() {
+        System.out.println("Starting worker");
         var playwright = Playwright.create();
         var browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(headless));
 
@@ -36,45 +38,44 @@ public class BrowserService extends Service {
             Thread.sleep(3000);
         } catch (InterruptedException ignored) {return;}
 
+        System.out.println("Worker started");
         while(true) {
-            String url;
+            Queues.BrowserData data;
             try {
-                url = Queues.BROWSER_QUEUE.take().url();
+                data = Queues.BROWSER_QUEUE.take();
             } catch (InterruptedException e) {
                 break;
             }
+            System.out.println("Starting job with url: " + data.url());
 
-            boolean bb = true;
+            String content;
+            try {
+                HttpsURLConnection conn = (HttpsURLConnection) new URL(data.url()).openConnection();
+                conn.setInstanceFollowRedirects(true);
+                int status = conn.getResponseCode();
 
-            String content = "<html></html>";
-            if (bb) {
-                page.navigate(url);
-                content = page.content();
-                //page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("example.png")));
-            } else {
-                try {
-                    HttpsURLConnection conn = (HttpsURLConnection) new URL(url).openConnection();
-                    conn.setInstanceFollowRedirects(true);
-                    int status = conn.getResponseCode();
-
-                    BufferedReader in = new BufferedReader(
-                            new InputStreamReader(conn.getInputStream()));
-                    String inputLine;
-                    StringBuffer ccontent = new StringBuffer();
-                    while ((inputLine = in.readLine()) != null) {
-                        ccontent.append(inputLine);
-                    }
-                    in.close();
-                    content = ccontent.toString();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                BufferedReader in = new BufferedReader(
+                        new InputStreamReader(conn.getInputStream()));
+                String inputLine;
+                StringBuilder rawContent = new StringBuilder();
+                while ((inputLine = in.readLine()) != null) {
+                    rawContent.append(inputLine);
                 }
+                in.close();
+                content = rawContent.toString();
+            } catch (Exception e) {
+                // TODO: ERROR HANDLING
+                try {
+                    RabbitMQClient.INSTANCE.sendNACK(data.deliveryTag());
+                } catch (Exception ignored) {}
+                e.printStackTrace();
+                continue;
             }
 
-
+            System.out.println("Finished job with url: " + data.url());
 
             try {
-                Queues.PROCESS_QUEUE.put(new Queues.ProcessData(url, content));
+                Queues.FINISH_BROWSER_QUEUE.put(new Queues.FinishedBrowserData(data.deliveryTag(), data.url(), content, data.toProcess()));
             } catch (InterruptedException e) {
                 break;
             }
@@ -87,6 +88,6 @@ public class BrowserService extends Service {
 
     @Override
     protected Thread createThread() {
-        return new Thread(this::consume);
+        return new Thread(this::worker);
     }
 }

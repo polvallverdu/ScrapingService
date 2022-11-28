@@ -2,13 +2,14 @@ package me.java.service;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import me.java.ScrapeManager;
+import me.java.scrapers.Scraper;
 import me.java.services.Service;
 import me.java.utils.Queues;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import us.codecraft.xsoup.Xsoup;
 
-public class ScrapperService extends Service {
+public class ScraperService extends Service {
 
     private void consumer() {
         while (true) {
@@ -20,11 +21,16 @@ public class ScrapperService extends Service {
             }
 
             Document document = Jsoup.parse(processData.content());
-            //String title = Xsoup.compile("//*[@id=\"pdp_product_title\"]").evaluate(document).get();
 
-            // TODO: Process html
+            Scraper scraper = ScrapeManager.INSTANCE.newScraper(processData.url());
+            if (scraper == null) {
+                // TODO: ERROR URL NOT FOUND
+            }
+            if (!scraper.process(document)) {
+                // TODO: ERROR BAD DOCUMENT
+            }
 
-            JsonObject finalData = JsonParser.parseString("{\"link\": \"" + processData.url() + "\"}").getAsJsonObject();
+            JsonObject finalData = scraper.toJson();
             try {
                 Queues.FINISH_PROCESS_QUEUE.put(new Queues.FinishedProcessData(processData.deliveryTag(), finalData.toString()));
             } catch (InterruptedException e) {

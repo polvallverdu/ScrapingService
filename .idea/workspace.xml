@@ -4,7 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9af4559-8219-408a-9c29-f6eef8af0884" name="Changes" comment="" />
+    <list default="true" id="d9af4559-8219-408a-9c29-f6eef8af0884" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/highlightedFiles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/me/java/queue/RabbitMQClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/me/java/queue/RedisClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/me/java/services/Service.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/me/java/utils/Queues.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/playwright-service/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/playwright-service/src/main/java/me/java/PlaywrightServiceMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/playwright-service/src/main/java/me/java/service/BrowserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scrape-service/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scrape-service/src/main/java/me/java/ScrapeManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scrape-service/src/main/java/me/java/ScrapeServiceMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scrape-service/src/main/java/me/java/scrapers/NikeScraper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scrape-service/src/main/java/me/java/scrapers/Scraper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scrape-service/src/main/java/me/java/service/ScraperService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,8 +45,19 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2I0jFQsS3B0D0N0PEegytF0IC26" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -24,13 +65,80 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager" selected="Application.ScrapeServiceMain">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="java.app.Main" />
+      <module name="playwright-service.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="java.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlaywrightServiceMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="me.java.PlaywrightServiceMain" />
+      <module name="services.playwright-service.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="me.java.scrapers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ScrapeServiceMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="me.java.ScrapeServiceMain" />
+      <module name="services.scrape-service.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="me.java.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="me.java.playwrightservice.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="me.java.playwrightservice.Main" />
+      <module name="playwright-service.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="me.java.playwrightservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ScrapeServiceMain" />
+        <item itemvalue="Application.me.java.playwrightservice.Main" />
+        <item itemvalue="Application.PlaywrightServiceMain" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -39,8 +147,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669325292606</updated>
+      <workItem from="1669325295180" duration="7852000" />
+      <workItem from="1669364508596" duration="6365000" />
+      <workItem from="1669374305990" duration="980000" />
+      <workItem from="1669482511792" duration="3185000" />
+      <workItem from="1669551651605" duration="1409000" />
+      <workItem from="1669570564214" duration="873000" />
+      <workItem from="1669658676875" duration="2209000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

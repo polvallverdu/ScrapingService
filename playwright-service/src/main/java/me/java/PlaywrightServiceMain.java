@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Main {
+public class PlaywrightServiceMain {
 
     private static ArrayList<Long> deliveryTags = new ArrayList<>();
 
@@ -46,9 +46,9 @@ public class Main {
             }
 
             String uuid = UUID.randomUUID().toString();
-            RedisClient.INSTANCE.add(uuid, finishData.data(), 5*60l);
+            RedisClient.INSTANCE.add(uuid, finishData.content(), 5*60l);
 
-            RabbitMQClient.INSTANCE.publishJob(finishData.toProcess() ? RabbitMQClient.RabbitMQQueues.PROCESS_QUEUE : RabbitMQClient.RabbitMQQueues.FINISH_BROWSER_QUEUE, "{\"uuid\": \"" + uuid + "\"}");
+            RabbitMQClient.INSTANCE.publishJob(finishData.toProcess() ? RabbitMQClient.RabbitMQQueues.PROCESS_QUEUE : RabbitMQClient.RabbitMQQueues.FINISH_BROWSER_QUEUE, "{\"url\":\"" + finishData.url() + "\", \"uuid\": \"" + uuid + "\"}");
 
             deliveryTags.remove(finishData.deliveryTag());
             RabbitMQClient.INSTANCE.sendACK(finishData.deliveryTag());
